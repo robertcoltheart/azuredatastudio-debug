@@ -522,7 +522,7 @@ export class NodeDebugAdapter extends ChromeDebugAdapter {
         const env = Object.assign({}, process.env, envArgs);
         Object.keys(env).filter(k => env[k] === null).forEach(key => delete env[key]);
 
-        const spawnOpts: cp.SpawnOptions = { cwd, env };
+        const spawnOpts: cp.SpawnOptions = { cwd, env, shell: true };
 
         // Workaround for bug Microsoft/vscode#45832
         if (process.platform === 'win32' && runtimeExecutable.indexOf(' ') > 0) {
